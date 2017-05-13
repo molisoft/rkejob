@@ -27,13 +27,21 @@ rails -> redis -> rkejob --post--> rails(运行)
 
 #### 如何使用
 
+rkejob：
+
 程序同目录下创建config.yml文件（参考config.yml.example）
 
-配置
+一定要配置
 
 ```
 job:
-    url: xxx
+    url: 您的网站url
 ```
 
+rails：
 
+sidekiq gem是要保留的，虽然已经不需要运行它了，但是需要依赖他来"推送队列"到redis中。
+
+新增一个接受上面job url的controller action，处理rkejob推送过来的队列。
+
+完成
