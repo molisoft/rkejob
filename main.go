@@ -12,6 +12,7 @@ import (
 )
 
 func job(msg *goworkers.Msg) {
+	fmt.Println("------------job--------", msg.OriginalJson())
 	url := Config.Job.Url
 
 	string_body, _ := msg.Args().GetIndex(0).String()
@@ -35,13 +36,13 @@ func cron(item CronItemConfig) {
 		request_body := bytes.NewReader([]byte(item.Name))
 		_, err := http.Post(item.Url, "application/text", request_body)
 		if err != nil {
-			fmt.Println("Job err:", err)
+			fmt.Println(item.Name, " Job err:", err)
 			return
 		}
 	}
 	go func() {
 		for t := range ticker.C {
-			fmt.Println("Ticket at ", t)
+			fmt.Println(item.Name, " Ticket at ", t)
 			proc()
 		}
 	}()
