@@ -1,0 +1,6 @@
+gom 'github.com/BurntSushi/toml', :commit => '99064174e013895bbd9b025c31100bd1d9b590ca'
+gom 'github.com/bitly/go-simplejson', :commit => 'aabad6e819789e569bd6aabf444c935aa9ba1e44'
+gom 'github.com/garyburd/redigo', :commit => 'ffa8d46ada782d81cfda81a0fbd9f45ceae448e8'
+gom 'github.com/jinzhu/configor', :commit => 'fb7a3183cd987802d006408fe3a4a9e1f6002ece'
+gom 'github.com/jrallison/go-workers', :commit => 'd60d79dbbfbb83f849d2430013a59152845fa598'
+gom 'gopkg.in/yaml.v1', :commit => 'a5b47d31c556af34a302ce5d659e6fea44d90de0'
