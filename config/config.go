@@ -2,6 +2,8 @@ package config
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/jinzhu/configor"
 )
 
@@ -22,10 +24,17 @@ type JobConfig struct {
 	Url string
 }
 
+type CronItemConfig struct {
+	Name  string
+	Url   string
+	Times time.Duration `default: "5"`
+}
+
 var Config = struct {
 	Redis RedisConfig
 	Queue QueueConfig
 	Job   JobConfig
+	Crons []CronItemConfig
 }{}
 
 func init() {

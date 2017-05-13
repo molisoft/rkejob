@@ -27,7 +27,7 @@ rails -> redis -> rkejob --post--> rails(运行)
 
 #### 如何使用
 
-rkejob：
+##### 队列
 
 程序同目录下创建config.yml文件（参考config.yml.example）
 
@@ -43,5 +43,9 @@ rails：
 sidekiq gem是要保留的，虽然已经不需要运行它了，但是需要依赖他来"推送队列"到redis中。
 
 新增一个接受上面job url的controller action，处理rkejob推送过来的队列。
+
+##### 定时任务
+
+支持定时任务，每隔数分钟请求远程地址
 
 完成

@@ -12,3 +12,13 @@ queue:
 
 job:
   url: "https://www.rkecloud.com/myjobs"
+  
+crons:
+  -
+    name: "CheckServerStatus"
+    url: "https://www.rkecloud.com/mycrons"
+    times: 5   # 分钟为单位，这里表示每5分钟执行一次
+  -
+    name: "CheckUserStatus"
+    url: "https://www.rkecloud.com/mycrons"
+    times: 5
