@@ -8,7 +8,7 @@ import (
 	"time"
 
 	goworkers "github.com/jrallison/go-workers"
-	libcron "github.com/robfig/cron"
+	libcron "github.com/molisoft/cron"
 	. "rkejob/config"
 )
 
@@ -52,11 +52,19 @@ func init() {
 		goworkers.Process(queue, job, 1)
 	}
 
+	init_cron()
+}
+
+func init_cron() {
 	c := libcron.New()
-	for _, item := range Config.Crons {
-		c.AddFunc(item.Spec, func() {
-			cron(item)
-		})
+	for i, item := range Config.Crons {
+		fmt.Println("-----", item)
+		err := c.AddFunc(item.Spec, func(e *libcron.Entry) {
+			cron(Config.Crons[e.Param.(int)])
+		}, i)
+		if err != nil {
+			fmt.Println("cron add job err ", err)
+		}
 	}
 	c.Start()
 }

@@ -4,4 +4,4 @@ gom 'github.com/garyburd/redigo', :commit => 'ffa8d46ada782d81cfda81a0fbd9f45cea
 gom 'github.com/jinzhu/configor', :commit => 'fb7a3183cd987802d006408fe3a4a9e1f6002ece'
 gom 'github.com/jrallison/go-workers', :commit => 'd60d79dbbfbb83f849d2430013a59152845fa598'
 gom 'gopkg.in/yaml.v1', :commit => 'a5b47d31c556af34a302ce5d659e6fea44d90de0'
-gom 'github.com/robfig/cron', :commit => 'df38d32658d8788cd446ba74db4bb5375c4b0cb3'
+gom 'github.com/molisoft/cron', :commit => '2faab720d6115ae3fee34d8d870dd1cd8255a0df'
