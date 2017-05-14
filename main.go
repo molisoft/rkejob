@@ -8,6 +8,7 @@ import (
 	"time"
 
 	goworkers "github.com/jrallison/go-workers"
+	libcron "github.com/robfig/cron"
 	. "rkejob/config"
 )
 
@@ -28,25 +29,14 @@ func job(msg *goworkers.Msg) {
 }
 
 func cron(item CronItemConfig) {
-	fmt.Println("Runing cron ", item)
-
-	ticker := time.NewTicker(item.Times * time.Minute)
-
-	proc := func() {
-		request_body := bytes.NewReader([]byte(item.Name))
-		_, err := http.Post(item.Url, "application/text", request_body)
-		if err != nil {
-			fmt.Println(item.Name, " Job err:", err)
-			return
-		}
+	fmt.Println(time.Now(), "Runing cron ", item)
+	request_body := bytes.NewReader([]byte(item.Name))
+	_, err := http.Post(item.Url, "application/text", request_body)
+	if err != nil {
+		fmt.Println(item.Name, " Job err:", err)
+		return
 	}
-	go func() {
-		for t := range ticker.C {
-			fmt.Println(item.Name, " Ticket at ", t)
-			proc()
-		}
-	}()
-	select {}
+	fmt.Println(time.Now(), "Done cron ", item)
 }
 
 func init() {
@@ -62,9 +52,13 @@ func init() {
 		goworkers.Process(queue, job, 1)
 	}
 
+	c := libcron.New()
 	for _, item := range Config.Crons {
-		go cron(item)
+		c.AddFunc(item.Spec, func() {
+			cron(item)
+		})
 	}
+	c.Start()
 }
 
 func main() {

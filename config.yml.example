@@ -17,8 +17,8 @@ crons:
   -
     name: "CheckServerStatus"
     url: "https://www.rkecloud.com/mycrons"
-    times: 5   # 分钟为单位，这里表示每5分钟执行一次
+    spec: "0 30 * * * *"   # 秒 分 时 日 月 星期，相比crontab，新增了"秒"
   -
     name: "CheckUserStatus"
     url: "https://www.rkecloud.com/mycrons"
-    times: 5
+    spec: "0 30 * * * *"   # 秒 分 时 日 月 星期，相比crontab，新增了"秒"

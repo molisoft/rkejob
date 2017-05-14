@@ -2,7 +2,6 @@ package config
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/jinzhu/configor"
 )
@@ -25,9 +24,9 @@ type JobConfig struct {
 }
 
 type CronItemConfig struct {
-	Name  string
-	Url   string
-	Times time.Duration `default: "5"`
+	Name string
+	Url  string
+	Spec string
 }
 
 var Config = struct {
