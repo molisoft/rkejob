@@ -40,6 +40,11 @@ func cron(item CronItemConfig) {
 }
 
 func init() {
+	init_job()
+	init_cron()
+}
+
+func init_job() {
 	goworkers.Configure(map[string]string{
 		"server":    fmt.Sprintf("%s:%d", Config.Redis.Host, Config.Redis.Port),
 		"database":  fmt.Sprintf("%d", Config.Queue.Database),
@@ -51,8 +56,6 @@ func init() {
 	for _, queue := range Config.Queue.Queues {
 		goworkers.Process(queue, job, 1)
 	}
-
-	init_cron()
 }
 
 func init_cron() {
