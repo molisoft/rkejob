@@ -16,8 +16,7 @@ func job(msg *goworkers.Msg) {
 	fmt.Println("------------job--------", msg.OriginalJson())
 	url := Config.Job.Url
 
-	string_body, _ := msg.Args().GetIndex(0).String()
-	request_body := bytes.NewReader([]byte(string_body))
+	request_body := bytes.NewReader([]byte(msg.OriginalJson()))
 	resp, err := http.Post(url, "application/text", request_body)
 	if err != nil {
 		fmt.Println("Job err: ", err)
